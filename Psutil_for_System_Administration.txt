@@ -1,0 +1,54 @@
+# Psutil Use in System Administration
+
+To install the necessary libraries (psutil and shutil) use : pip install psutil and pip install shutil commands. These scripts will provide basic monitoring, but you can enhance them further based on your requirements. 🚀
+
+
+1) CPU Usage:
+
+import psutil
+
+def get_cpu_usage():
+    return psutil.cpu_percent()
+
+print(f"Current CPU usage: {get_cpu_usage()}%")
+
+-----------------------------------------------------------------------------------------------------
+
+2) Memory Usage:
+
+import psutil
+
+def get_memory_usage():
+    mem = psutil.virtual_memory()
+    return mem.percent
+
+print(f"Used RAM: {get_memory_usage()}%")
+
+-----------------------------------------------------------------------------------------------------
+
+3) Disk Space:
+
+
+import shutil
+
+def get_disk_space():
+    total, used, free = shutil.disk_usage("/")
+    return used / total * 100
+
+print(f"Used disk space: {get_disk_space()}%")
+
+-----------------------------------------------------------------------------------------------------
+
+4) Network Activity:
+
+import psutil
+
+def get_network_activity():
+    net = psutil.net_io_counters()
+    return net.bytes_sent, net.bytes_recv
+
+sent, received = get_network_activity()
+print(f"Bytes sent: {sent}, Bytes received: {received}")
+
+
+-----------------------------------------------------------------------------------------------------
