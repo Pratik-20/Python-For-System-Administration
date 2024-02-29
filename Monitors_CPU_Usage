@@ -1,1 +1,42 @@
+"""
+Let’s create a simple Python script to graphically monitor CPU usage using the psutil library for system information and matplotlib for plotting.
 
+First, make sure you have both psutil and matplotlib installed. If not, you can install them using:
+pip install psutil matplotlib
+
+Now, let’s create a Python script that continuously monitors CPU usage and plots it in real-time:
+
+"""
+
+
+import psutil
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+# Initialize an empty list to store CPU usage data
+cpu_usage_data = []
+
+# Function to update CPU usage data
+def update_cpu_usage(frame):
+    cpu_percent = psutil.cpu_percent(interval=1)
+    cpu_usage_data.append(cpu_percent)
+    plt.cla()  # Clear the previous plot
+    plt.plot(cpu_usage_data, label="CPU Usage")
+    plt.xlabel("Time (seconds)")
+    plt.ylabel("Usage (%)")
+    plt.title("Real-time CPU Usage")
+    plt.legend()
+
+# Create an animation to update the plot
+ani = FuncAnimation(plt.gcf(), update_cpu_usage, interval=1000)
+
+# Show the plot
+plt.tight_layout()
+plt.show()
+
+
+"""
+Run this script, and it will display a live graph showing CPU usage over time. The graph will update every second. Note: You can customize the interval (currently set to 1 second) and other plot properties according to your preferences.
+Remember to adapt this script to your specific needs. You can add more features, customize the plot appearance, or combine it with other monitoring metrics (e.g., memory usage) if desired. 📈
+
+"""
